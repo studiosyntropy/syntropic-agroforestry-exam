@@ -1,7 +1,7 @@
 import { Question } from './types';
 
 export const APP_NAME = "Syntropic Agroforestry Exam";
-export const EXAM_VERSION = "2.0";
+export const EXAM_VERSION = "2.1";
 export const BANK_DATE = "2026-11-11";
 
 // Map an answer letter to an option index. Unknown letters stop the build instead of silently defaulting.

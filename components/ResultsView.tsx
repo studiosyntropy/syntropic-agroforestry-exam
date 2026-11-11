@@ -1,6 +1,8 @@
-import React, { useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { QuizState } from '../types';
 import { Button } from './Button';
+import { ExamSurvey } from './ExamSurvey';
+import { FlagQuestion } from './FlagQuestion';
 import { RefreshCw, AlertCircle, XCircle, CheckCircle } from 'lucide-react';
 
 interface ResultsViewProps {
@@ -10,6 +12,7 @@ interface ResultsViewProps {
 
 export const ResultsView: React.FC<ResultsViewProps> = ({ state, onRestart }) => {
   const certificateRef = useRef<HTMLDivElement>(null);
+  const shownAt = useMemo(() => Date.now(), []);
 
   const correctCount = state.questions.reduce((acc, q, idx) => {
     return acc + (state.answers[idx] === q.correctAnswerIndex ? 1 : 0);
@@ -91,6 +94,8 @@ export const ResultsView: React.FC<ResultsViewProps> = ({ state, onRestart }) =>
            Please take a screenshot of the certificate above to submit to your professor.
         </p>
 
+        <ExamSurvey score={percentage} studentName={state.studentName} />
+
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button onClick={onRestart} variant="primary" size="lg" className="flex items-center gap-2 shadow-xl">
             <RefreshCw className="w-4 h-4" />
@@ -155,10 +160,15 @@ export const ResultsView: React.FC<ResultsViewProps> = ({ state, onRestart }) =>
                   <span className="font-bold text-xs text-stone-400 uppercase mr-2">Professor's Guidance:</span>
                   {q.explanation}
                 </div>
+                <FlagQuestion question={q} selectedAnswerIndex={userAnswerIdx ?? null} startedAt={shownAt} />
               </div>
             </div>
           );
         })}
+      </div>
+
+      <div className="px-6 md:px-8 pb-8 bg-white">
+        <ExamSurvey score={percentage} studentName={state.studentName} />
       </div>
 
       <div className="p-6 bg-stone-50 border-t border-stone-100 flex justify-center gap-4">

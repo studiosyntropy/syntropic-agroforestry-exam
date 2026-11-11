@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Question } from '../types';
 import { Button } from './Button';
+import { FlagQuestion } from './FlagQuestion';
 import { Leaf, CheckCircle, XCircle, BookOpen } from 'lucide-react';
 
 interface QuestionCardProps {
@@ -25,6 +26,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
   isLast
 }) => {
   const isCorrect = isAnswered && selectedAnswerIndex === question.correctAnswerIndex;
+  const shownAt = useMemo(() => Date.now(), [question.id]);
 
   const getOptionStyle = (index: number) => {
     if (!isAnswered) {
@@ -99,6 +101,9 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
                   </p>
                 </div>
               </div>
+            </div>
+            <div className="mb-6">
+              <FlagQuestion key={question.id} question={question} selectedAnswerIndex={selectedAnswerIndex} startedAt={shownAt} />
             </div>
             <div className="flex justify-end">
                <Button onClick={onNext} size="lg" className="w-full md:w-auto shadow-md">

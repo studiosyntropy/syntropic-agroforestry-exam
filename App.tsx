@@ -5,6 +5,7 @@ import { Button } from './components/Button';
 import { ProgressBar } from './components/ProgressBar';
 import { QuestionCard } from './components/QuestionCard';
 import { ResultsView } from './components/ResultsView';
+import { FeedbackModal } from './components/FeedbackModal';
 import { Sprout, Wind, Droplets, Lightbulb, User, IdCard, CheckCircle2 } from 'lucide-react';
 import { APP_NAME, EXAM_VERSION, BANK_DATE, QUESTION_COUNT } from './constants';
 
@@ -24,6 +25,7 @@ const App: React.FC = () => {
   // Difficulty is fixed for the Official Exam
   const difficulty = Difficulty.INTERMEDIATE; 
   const [dailyWisdom, setDailyWisdom] = useState<string>("");
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
 
   // Local state for login inputs
   const [nameInput, setNameInput] = useState("");
@@ -94,13 +96,24 @@ const App: React.FC = () => {
       
       {/* Header */}
       <header className="bg-white/80 backdrop-blur-md sticky top-0 z-10 border-b border-stone-200 border-t-[3px] border-t-[#D7A23E]">
-        <div className="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3 text-emerald-900 cursor-pointer" onClick={restart}>
-            <img src="./v8-app-icon.png" alt="" width={36} height={36} className="w-9 h-9 rounded-full" />
-            <div className="leading-tight">
-              <h1 className="font-bold text-lg tracking-tight serif">{APP_NAME}</h1>
-              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-emerald-600">Studio Syntropy · Taiwan</p>
+        <div className="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="flex items-center gap-3 text-emerald-900 cursor-pointer min-w-0" onClick={restart}>
+              <img src="./v8-app-icon.png" alt="" width={36} height={36} className="w-9 h-9 rounded-full" />
+              <div className="leading-tight min-w-0">
+                <h1 className="font-bold text-lg tracking-tight serif">{APP_NAME}</h1>
+                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-emerald-600">Studio Syntropy · Taiwan</p>
+              </div>
             </div>
+            <button
+              type="button"
+              onClick={() => setFeedbackOpen(true)}
+              title="Beta version: we welcome your feedback"
+              aria-label="Beta version: send feedback"
+              className={`${state.status === 'active' ? 'hidden md:inline-flex' : 'inline-flex'} shrink-0 items-center min-h-[24px] px-2.5 rounded-full bg-[#D7A23E] text-[#1D3A26] text-[11px] font-bold uppercase tracking-[0.1em] hover:bg-[#1D3A26] hover:text-[#F5F1E6] transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500`}
+            >
+              Beta
+            </button>
           </div>
           
           {state.status === 'active' && (
@@ -242,9 +255,12 @@ const App: React.FC = () => {
       </main>
 
       <footer className="border-t border-stone-200 py-4 px-4 text-center text-xs text-stone-500">
-        {APP_NAME} v{EXAM_VERSION} · {QUESTION_COUNT} questions · updated {BANK_DATE} · Studio Syntropy 趨合工作室 ·{' '}
-        <a href="https://studio-syntropy.com" target="_blank" rel="noopener noreferrer" className="underline decoration-stone-300 underline-offset-2 hover:text-emerald-700">studio-syntropy.com</a>
+        {APP_NAME} v{EXAM_VERSION} (beta) · {QUESTION_COUNT} questions · updated {BANK_DATE} · Studio Syntropy 趨合工作室 ·{' '}
+        <a href="https://studio-syntropy.com" target="_blank" rel="noopener noreferrer" className="underline decoration-stone-300 underline-offset-2 hover:text-emerald-700">studio-syntropy.com</a> ·{' '}
+        <button type="button" onClick={() => setFeedbackOpen(true)} className="underline decoration-stone-300 underline-offset-2 hover:text-emerald-700">Send feedback</button>
       </footer>
+
+      <FeedbackModal open={feedbackOpen} onClose={() => setFeedbackOpen(false)} />
     </div>
   );
 };
