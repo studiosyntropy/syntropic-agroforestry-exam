@@ -77,10 +77,10 @@ export const ResultsView: React.FC<ResultsViewProps> = ({ state, onRestart }) =>
               </div>
 
               <div className="text-center md:text-right flex flex-col items-center md:items-end">
-                <div className="signature text-4xl md:text-5xl text-stone-900 mb-2 transform -rotate-2">Tobias Neugebauer</div>
+                <div className="signature text-4xl md:text-5xl text-stone-900 mb-2 transform -rotate-2">Tobias Chen</div>
                 <div className="w-56 h-px bg-stone-900 mb-2"></div>
-                <p className="text-xs font-bold text-stone-900 uppercase tracking-wider">Tobias Neugebauer, Instructor</p>
-                <p className="text-xs text-stone-600 font-serif italic">USR Tzu Chi University</p>
+                <p className="text-xs font-bold text-stone-900 uppercase tracking-wider">Tobias Chen · 陳拓彼, Instructor</p>
+                <p className="text-xs text-stone-600 font-serif italic">Tzu Chi University USR Center · 慈濟大學USR教學研究中心</p>
               </div>
             </div>
 

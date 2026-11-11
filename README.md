@@ -1,20 +1,15 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Syntropic Agroforestry Exam
 
-# Run and deploy your AI Studio app
+The course exam of Studio Syntropy 趨合工作室 for syntropic agroforestry (Tzu Chi University USR Center 慈濟大學USR教學研究中心 courses).
+Each attempt draws 30 random questions from the bank and shuffles the answer options. A score of 85% or more shows the certificate.
 
-This contains everything you need to run your app locally.
+## How it is updated (one release path)
 
-View your app in AI Studio: https://ai.studio/apps/drive/15y3Zjp94NSnSsUEuvpCmHr0kd4Dt4Bjj
+1. Edit the questions in `constants.ts` (the correct answer is listed first; the app shuffles the options on every attempt).
+2. Keep plant facts in line with PLANTDB, the Studio Syntropy plant database (stages, strata, invasive and threatened species).
+3. Raise `EXAM_VERSION` and set `BANK_DATE`; the footer shows both and the number of questions.
+4. Commit to `main`. Vercel deploys automatically.
 
-## Run Locally
+## Run locally
 
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+`npm install`, then `npm run dev`. No API key is needed; the questions come from `constants.ts`.

@@ -6,7 +6,7 @@ import { ProgressBar } from './components/ProgressBar';
 import { QuestionCard } from './components/QuestionCard';
 import { ResultsView } from './components/ResultsView';
 import { Sprout, Wind, Droplets, Lightbulb, User, IdCard, CheckCircle2 } from 'lucide-react';
-import { APP_NAME } from './constants';
+import { APP_NAME, EXAM_VERSION, BANK_DATE, QUESTION_COUNT } from './constants';
 
 const initialState: QuizState = {
   currentQuestionIndex: 0,
@@ -90,14 +90,17 @@ const App: React.FC = () => {
 
   // Render Logic
   return (
-    <div className="min-h-screen bg-[#f5f5f4] text-stone-800 flex flex-col font-sans selection:bg-emerald-200">
+    <div className="min-h-screen bg-[#F5F1E6] text-stone-800 flex flex-col font-sans selection:bg-emerald-200">
       
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md sticky top-0 z-10 border-b border-stone-200">
+      <header className="bg-white/80 backdrop-blur-md sticky top-0 z-10 border-b border-stone-200 border-t-[3px] border-t-[#D7A23E]">
         <div className="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2 text-emerald-800 cursor-pointer" onClick={restart}>
-            <Sprout className="w-6 h-6" />
-            <h1 className="font-bold text-lg tracking-tight serif">{APP_NAME}</h1>
+          <div className="flex items-center gap-3 text-emerald-900 cursor-pointer" onClick={restart}>
+            <img src="./v8-app-icon.png" alt="" width={36} height={36} className="w-9 h-9 rounded-full" />
+            <div className="leading-tight">
+              <h1 className="font-bold text-lg tracking-tight serif">{APP_NAME}</h1>
+              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-emerald-600">Studio Syntropy · Taiwan</p>
+            </div>
           </div>
           
           {state.status === 'active' && (
@@ -237,6 +240,11 @@ const App: React.FC = () => {
           <ResultsView state={state} onRestart={restart} />
         )}
       </main>
+
+      <footer className="border-t border-stone-200 py-4 px-4 text-center text-xs text-stone-500">
+        {APP_NAME} v{EXAM_VERSION} · {QUESTION_COUNT} questions · updated {BANK_DATE} · Studio Syntropy 趨合工作室 ·{' '}
+        <a href="https://studio-syntropy.com" target="_blank" rel="noopener noreferrer" className="underline decoration-stone-300 underline-offset-2 hover:text-emerald-700">studio-syntropy.com</a>
+      </footer>
     </div>
   );
 };

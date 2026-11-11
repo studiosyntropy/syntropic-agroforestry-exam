@@ -4,17 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Syntropic Agroforestry Exam</title>
+    <meta name="theme-color" content="#1D3A26" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./v8-favicon.png" />
+    <link rel="apple-touch-icon" href="./v8-app-icon.png" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
+    <script>
+      // Studio Syntropy palette (studio-syntropy.com): the app's emerald and stone classes map to the brand greens and paper tones
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              emerald: { 50: '#F1F5E8', 100: '#E3EBCB', 200: '#CADCAA', 300: '#A9C47E', 400: '#86A646', 500: '#5F8A3A', 600: '#3E6A2E', 700: '#335A27', 800: '#294A21', 900: '#1D3A26', 950: '#13281A' },
+              stone: { 50: '#FBF8F1', 100: '#F5F1E6', 200: '#E6DFCC', 300: '#CFC5AC', 400: '#A89F88', 500: '#6F6A58', 600: '#4F5A4B', 700: '#3F5444', 800: '#2A3B2E', 900: '#1D3A26' }
+            },
+            fontFamily: {
+              sans: ['"Atkinson Hyperlegible Next"', '"Noto Sans TC"', 'system-ui', 'sans-serif'],
+              serif: ['"Bricolage Grotesque"', '"Atkinson Hyperlegible Next"', '"Noto Sans TC"', 'sans-serif']
+            }
+          }
+        }
+      };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Dancing+Script:wght@700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
       body {
-        font-family: 'Inter', sans-serif;
-        background-color: #f5f5f4; /* Stone-100 */
-        background-image: url("https://www.transparenttextures.com/patterns/cubes.png"); /* Subtle texture */
-        background-blend-mode: multiply;
+        font-family: 'Atkinson Hyperlegible Next', 'Noto Sans TC', system-ui, sans-serif;
+        background-color: #F5F1E6; /* Studio Syntropy paper */
       }
       h1, h2, h3, .serif {
-        font-family: 'Merriweather', serif;
+        font-family: 'Bricolage Grotesque', 'Atkinson Hyperlegible Next', 'Noto Sans TC', sans-serif;
       }
       .signature {
         font-family: 'Dancing Script', cursive;
@@ -53,11 +71,11 @@
         background: transparent;
       }
       ::-webkit-scrollbar-thumb {
-        background: #a8a29e;
+        background: #CFC5AC;
         border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #78716c;
+        background: #3F5444;
       }
     </style>
   <script type="importmap">

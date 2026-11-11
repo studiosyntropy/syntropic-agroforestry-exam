@@ -29,8 +29,12 @@ export const generateQuizQuestions = async (difficulty: Difficulty, count: numbe
   // Simulate network delay for effect
   await new Promise(resolve => setTimeout(resolve, 800));
 
-  // 1. Shuffle the entire question bank to get random questions
-  const shuffledBank = [...QUESTION_BANK].sort(() => 0.5 - Math.random());
+  // 1. Shuffle the entire question bank to get random questions (Fisher-Yates, unbiased)
+  const shuffledBank = [...QUESTION_BANK];
+  for (let i = shuffledBank.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledBank[i], shuffledBank[j]] = [shuffledBank[j], shuffledBank[i]];
+  }
   
   // 2. Select the requested number of questions
   const selectedQuestions = shuffledBank.slice(0, count);
